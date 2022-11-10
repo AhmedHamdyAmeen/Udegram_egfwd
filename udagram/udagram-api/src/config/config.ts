@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-// ENV variables 
+// ENV variables
 // - AWS_ACCESS_KEY_ID
 // - AWS_SECRET_ACCESS_KEY
 // Are Also needed
@@ -15,6 +15,7 @@ export const config = {
   aws_profile: process.env.AWS_PROFILE,
   aws_media_bucket: process.env.AWS_BUCKET,
   url: process.env.URL,
+  dbPort: Number(process.env.POSTGRES_PORT),
   jwt: {
     secret: process.env.JWT_SECRET,
   },
