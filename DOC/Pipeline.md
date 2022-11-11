@@ -2,12 +2,26 @@
 
 From the root of the project:
 
-- To install frontend dependencies run. - `npm run frontend:install`
-- To build the Angular/Frontend run. - `npm run frontend:build`
-- To deploy the project to S3 using `./udagram-frontend/bin/deploy.sh` deploy script run. - `npm run frontend:deploy`
-- To install api dependencies run. - `npm run api:install`
-- To build the api run. - `npm run api:build`
-- To deploy the project to EB using run - `npm run api:deploy`
+```shell
+# To To install Frontend dependencies
+npm run frontend:install
+
+# To build the Angular/Frontend
+npm run frontend:build
+
+# To deploy the project to S3 using
+npm run frontend:deploy
+
+# To install API dependencies
+npm run api:install
+
+# To build the api
+npm run api:build
+
+# To deploy the project to EB
+npm run api:deploy
+```
+
 
 ### CircleCi
 
