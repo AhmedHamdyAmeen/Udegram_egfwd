@@ -22,49 +22,27 @@ jobs:
       - run:
           name: Installing BackEnd Dependencies
           command: |
-            npm run backend:install
-            echo "TODO: Install dependencies in the the backend API"
+            'npm run backend:install'
       - run:
           name: Install Front-End Dependencies
           command: |
-            npm run frontend:install
-            echo "NODE --version" 
-            echo $(node --version)
-            echo "NPM --version" 
-            echo $(npm --version)
+            'npm run frontend:install'
       - run:
           name: Building Back-End
           command: |
-            npm run backend:build
+            'npm run backend:build'
       - run:
           name: Building Front-End
           command: |
-            npm run frontend:build
+            'npm run frontend:build'
       - run:
           name: Deploying Front-End
           command: |
-            npm run frontend:deploy
+            'npm run frontend:deploy'
       - run:
           name: Deploying Back-End
           command: |
-            npm run backend:deploy
-  # deploy step will run only after manual approval
-  deploy:
-    docker:
-      - image: "cimg/base:stable"
-      # more setup needed for aws, node, elastic beanstalk
-    steps:
-      - node/install:
-          node-version: "16.13"
-      - eb/setup
-      - aws-cli/setup
-      - checkout
-      - run:
-          name: Deploy App
-          # TODO: Install, build, deploy in both apps
-          command: |
-            echo "# TODO: Install, build, deploy in both apps"
-
+            'npm run backend:deploy'
 workflows:
   udagram:
     jobs:

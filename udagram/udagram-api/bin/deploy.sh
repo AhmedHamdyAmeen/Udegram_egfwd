@@ -6,7 +6,7 @@ eb setenv PORT=$PORT ENV=$ENV DB_USER=$DB_USER DB_PASSWORD=$DB_PASSWORD DB_HOST=
 # Initialize Elastic Beanstalk Project
 eb init udagram-api --platform node.js --region us-east-1
 # Create environment variable
-eb create --sample udagram-api-dev
+# eb create --sample udagram-api-dev
 # Use env vars.
 eb use udagram-api-dev
 
