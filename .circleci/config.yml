@@ -1,64 +1,41 @@
 version: 2.1
 orbs:
-  # orbs contain basic recipes and reproducible actions (install node, aws, etc.)
   node: circleci/node@5.0.3
   eb: circleci/aws-elastic-beanstalk@2.0.1
   aws-cli: circleci/aws-cli@3.1.1
-  # different jobs are called later in the workflows sections
 jobs:
   build:
     docker:
-      # the base image can run most needed actions with orbs
-      # - image: cimg/base:stable
-      - image: "cimg/node:16.13"
+      - image: cimg/base:stable
     steps:
-      # install node and checkout code
-      - node/install:
-          node-version: "16.13"
+      - node/install
       - checkout
       - aws-cli/setup
       - eb/setup
-      # Use root level package.json to install dependencies in the frontend app
       - run:
-          name: Installing BackEnd Dependencies
+          name: Installing Front-End Dependencies
           command: |
-            'npm run backend:install'
+            npm run frontend:install
       - run:
-          name: Install Front-End Dependencies
+          name: Installing Back-End Dependencies
           command: |
-            'npm run frontend:install'
-      - run:
-          name: Building Back-End
-          command: |
-            'npm run backend:build'
+            npm run backend:install
       - run:
           name: Building Front-End
           command: |
-            'npm run frontend:build'
+            npm run frontend:build
+      - run:
+          name: Building Back-End
+          command: |
+            npm run backend:build
       - run:
           name: Deploying Front-End
           command: |
-            'npm run frontend:deploy'
+            npm run frontend:deploy
       - run:
           name: Deploying Back-End
           command: |
-            'npm run backend:deploy'
-  # deploy step will run only after manual approval
-  deploy:
-    docker:
-      - image: "cimg/base:stable"
-      # more setup needed for aws, node, elastic beanstalk
-    steps:
-      - node/install:
-          node-version: "16.13"
-      - eb/setup
-      - aws-cli/setup
-      - checkout
-      - run:
-          name: Deploy App
-          # TODO: Install, build, deploy in both apps
-          command: |
-            echo "# TODO: Install, build, deploy in both apps"
+            npm run backend:deploy
 
 workflows:
   udagram:
