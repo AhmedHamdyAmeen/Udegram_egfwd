@@ -43,18 +43,28 @@ jobs:
           name: Deploying Back-End
           command: |
             'npm run backend:deploy'
+  # deploy step will run only after manual approval
+  deploy:
+    docker:
+      - image: "cimg/base:stable"
+      # more setup needed for aws, node, elastic beanstalk
+    steps:
+      - node/install:
+          node-version: "16.13"
+      - eb/setup
+      - aws-cli/setup
+      - checkout
+      - run:
+          name: Deploy App
+          # TODO: Install, build, deploy in both apps
+          command: |
+            echo "# TODO: Install, build, deploy in both apps"
+
 workflows:
   udagram:
     jobs:
-      - build
-      - hold:
+      - build:
           filters:
             branches:
               only:
                 - master
-          type: approval
-          requires:
-            - build
-      - deploy:
-          requires:
-            - hold
